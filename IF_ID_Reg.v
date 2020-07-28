@@ -1,5 +1,5 @@
 module IF_ID_Reg(clk , flush , stall , instruction_in , 
-                    pc_in , instruction_out , instruction_out);
+                    pc_in , instruction_out , pc_out);
                     
     input clk , flush , stall;
     input [31:0] instruction_in , pc_in;

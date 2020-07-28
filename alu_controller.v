@@ -18,51 +18,51 @@ module alu_controller(alu_op, func, alu_operation);
     parameter SLT = 6'b101010;
 
     always @(alu_op or func) begin
-        alu_operation = `OFF;
+        alu_operation = `ALU_OFF;
         case(alu_op)
             MTYPE: begin
-                alu_operation = `ADD;
+                alu_operation = `ALU_ADD;
                 $display("@%t: ALU_CTRL::MTYPE", $time);
             end
 
             BTYPE: begin
-                alu_operation = `SUB;
+                alu_operation = `ALU_SUB;
                 $display("@%t: ALU_CTRL::BTYPE", $time);
             end
 
             RTYPE: begin
                 case(func)
                     ADD: begin
-                        alu_operation = `ADD;
+                        alu_operation = `ALU_ADD;
                     end
 
                     SUB: begin
-                        alu_operation = `SUB;
+                        alu_operation = `ALU_SUB;
                     end
 
                     AND: begin 
-                        alu_operation = `AND;
+                        alu_operation = `ALU_AND;
                     end
 
                     OR: begin
-                        alu_operation = `OR;
+                        alu_operation = `ALU_OR;
                     end
 
                     SLT: begin
-                        alu_operation = `SLT;
+                        alu_operation = `ALU_SLT;
                     end
 
-                    default: alu_operation = `OFF; 
+                    default: alu_operation = `ALU_OFF; 
                 endcase
                 $display("@%t: ALU_CTRL::RTYPE: func = %d", $time, func);
             end
 
             JTYPE: begin
-                alu_operation = `OFF;
+                alu_operation = `ALU_OFF;
                 $display("@%t: ALU_CTRL::JTYPE", $time);
             end
 
-            default: alu_operation = `OFF;
+            default: alu_operation = `ALU_OFF;
         endcase
     end
 endmodule

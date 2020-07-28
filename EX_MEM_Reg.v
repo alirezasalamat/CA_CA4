@@ -5,6 +5,7 @@ module EX_MEM_Reg(clk ,  mem_write_in , mem_read_in , reg_write_in ,
                     mux_reg_dst_out_out , ALU_zero_out , ALU_result_out,
                     mux_ALU_src_B_out_out);
                     
+    input clk;
     input mem_to_reg_in;
     output reg mem_to_reg_out;
 
@@ -19,6 +20,12 @@ module EX_MEM_Reg(clk ,  mem_write_in , mem_read_in , reg_write_in ,
     input [31:0] mux_ALU_src_B_out_in;
     output reg [31:0] mux_ALU_src_B_out_out;
     
+    input mem_read_in, mem_write_in;
+    output reg mem_read_out, mem_write_out;
+
+    input reg_write_in;
+    output reg reg_write_out;
+
     always @(posedge clk) begin
 
         mem_write_out <= mem_write_in;
