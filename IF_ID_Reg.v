@@ -1,3 +1,5 @@
+`include "constant_values.h"
+
 module IF_ID_Reg(clk , flush , IF_ID_write , instruction_in , 
                     pc_in , instruction_out , pc_out);
                     
@@ -8,8 +10,8 @@ module IF_ID_Reg(clk , flush , IF_ID_write , instruction_in ,
     always @(posedge clk) begin
         if(IF_ID_write == 1'b1) begin
             if(flush == 1'b1)begin
-                instruction_out <= 32'bz;
-                pc_out <= pc_in;
+                instruction_out <= `WORD_ZERO;
+                pc_out <= `WORD_ZERO;
             end
 
             else begin
@@ -19,8 +21,8 @@ module IF_ID_Reg(clk , flush , IF_ID_write , instruction_in ,
         end
 
         else begin
-            instruction_out <= 32'bz;
-            pc_out <= 32'bz;
+            instruction_out <= `WORD_ZERO;
+            pc_out <= `WORD_ZERO;
         end
     end
 endmodule

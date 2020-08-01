@@ -8,7 +8,7 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
                 jump_sel , pc_jump , pc_src , reg_write , mem_read , mem_write;
 
     // 2'b00 no branch , 2'b01 beq , 2'b10 bne            
-    output [1:0] branch
+    output [1:0] branch;
     output [2:0] alu_operation;
 
     //alu_op parameters
@@ -52,14 +52,17 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
 
     //signal branch
     always @(opcode) begin
-        if(opcode == BEQ ) 
+        if(opcode == BEQ) 
             branch = 2'b01;
 
         else if(opcode == BNE)
             branch = 2'b10;
 
+        else if(opcode == J)
+            branch = 2'b11;
+
         else
-            branch =2'b00; 
+            branch =2'b00;
     end
 
     always @(opcode or ctrl_func or equal) begin

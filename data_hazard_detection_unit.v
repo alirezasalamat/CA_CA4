@@ -21,14 +21,18 @@ module data_hazard_detection_unit(ID_EX_rt, ID_EX_mem_read , equal , IF_ID_rs , 
     end
 
     always @(branch)begin
-        if(branch == 2'b01 && equal == 1'b1)begin
+        if(branch == 2'b01 && equal == 1'b1) begin
             flush = 1'b1;
         end
 
-        else if(branch == 2'b10 && equal == 1'b0)begin
+        else if(branch == 2'b10 && equal == 1'b0) begin
             flush = 1'b1;
         end
 
+        else if(branch == 2'b11) begin
+            flush = 1'b1;
+        end
+        
         else if(branch == 2'b00) begin
             flush = 1'b0;
         end

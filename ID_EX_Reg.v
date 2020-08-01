@@ -5,7 +5,7 @@ module ID_EX_Reg(clk , mem_write_in , mem_read_in , reg_write_in ,
                    reg_dst_out , mem_to_reg_out , ALU_src_out , ALU_op_out , read_data1_out , 
                    read_data2_out , instr15_0_signextended_out , rs_out , rt_out , rd_out);
 
-    input clk , load;
+    input clk;
     input mem_write_in , mem_read_in , reg_write_in;
     output reg mem_write_out , mem_read_out , reg_write_out;
 
