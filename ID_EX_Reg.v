@@ -5,7 +5,7 @@ module ID_EX_Reg(clk , mem_write_in , mem_read_in , reg_write_in ,
                    reg_dst_out , mem_to_reg_out , ALU_src_out , ALU_op_out , read_data1_out , 
                    read_data2_out , instr15_0_signextended_out , rs_out , rt_out , rd_out);
 
-    input clk;
+    input clk , load;
     input mem_write_in , mem_read_in , reg_write_in;
     output reg mem_write_out , mem_read_out , reg_write_out;
 
@@ -25,19 +25,21 @@ module ID_EX_Reg(clk , mem_write_in , mem_read_in , reg_write_in ,
     output reg [4:0] rs_out , rt_out , rd_out;
 
     always @(posedge clk) begin
-        mem_write_out <= mem_write_in;
-        mem_read_out <= mem_read_in;
-        reg_write_out <= reg_write_in;
-        reg_dst_out <= reg_dst_in;
-        mem_to_reg_out <= mem_to_reg_in;
-        ALU_src_out <= ALU_src_in;
-        ALU_op_out <= ALU_op_in;
-        read_data1_out <= read_data1_in;
-        read_data2_out <= read_data2_in;
-        instr15_0_signextended_out <= instr15_0_signextended_in;
-        rs_out <= rs_in;
-        rt_out <= rt_in;
-        rd_out <= rd_in;
+        if(load == 1'b1)begin
+            mem_write_out <= mem_write_in;
+            mem_read_out <= mem_read_in;
+            reg_write_out <= reg_write_in;
+            reg_dst_out <= reg_dst_in;
+            mem_to_reg_out <= mem_to_reg_in;
+            ALU_src_out <= ALU_src_in;
+            ALU_op_out <= ALU_op_in;
+            read_data1_out <= read_data1_in;
+            read_data2_out <= read_data2_in;
+            instr15_0_signextended_out <= instr15_0_signextended_in;
+            rs_out <= rs_in;
+            rt_out <= rt_in;
+            rd_out <= rd_in;
+        end
     end
 endmodule
 
