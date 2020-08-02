@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "./constant_values.h"
+`include "./constant_values.vh"
 
 module ID_EX_Reg(clk, rst, mem_write_in, mem_read_in, reg_write_in,
                    reg_dst_in, mem_to_reg_in, ALU_src_in, ALU_op_in,

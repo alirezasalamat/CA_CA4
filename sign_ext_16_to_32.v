@@ -1,4 +1,5 @@
 `timescale 1 ns / 1 ns
+
 module sign_ext_16_to_32(in, out);
     input [15:0] in;
     output reg [31:0] out;

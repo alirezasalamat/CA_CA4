@@ -1,5 +1,6 @@
-`include "constant_values.h"
 `timescale 1 ns/1 ns
+`include "./constant_values.vh"
+
 module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_src , mem_to_reg ,
                 jump_sel , pc_jump , pc_src , reg_write , mem_read , mem_write , alu_operation , branch);
     input equal;

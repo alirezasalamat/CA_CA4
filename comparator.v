@@ -1,3 +1,5 @@
+`timescale 1 ns / 1 ns
+
 module comparator(read_data1, read_data2, equal);
     input [31:0] read_data1 , read_data2;
     output reg equal;

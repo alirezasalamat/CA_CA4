@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.h"
+`include "constant_values.vh"
 
 module instruction_mem(address, instruction);
     input [31:0] address;

@@ -1,12 +1,12 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.h"
+`include "./constant_values.vh"
 
 module alu_controller(alu_op, func, alu_operation);
     input [1:0] alu_op;
     input [5:0] func;
     output reg [2:0] alu_operation;
 
-    parameter MTYPE = 2'b00; // Memorey accses
+    parameter MTYPE = 2'b00; // Memorey access
     parameter BTYPE = 2'b01; // Branch
     parameter RTYPE = 2'b10; // Register
     parameter JTYPE = 2'b11; //Jump

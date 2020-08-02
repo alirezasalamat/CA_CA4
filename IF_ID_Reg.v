@@ -1,4 +1,4 @@
-`include "constant_values.h"
+`include "constant_values.vh"
 
 module IF_ID_Reg(clk, rst,
                     

@@ -1,4 +1,5 @@
 `timescale 1 ns / 1 ns
+
 module shift_left_2(sign_extended_address , shifted_address);
 
     output reg [31:0] shifted_address;

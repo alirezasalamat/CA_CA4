@@ -1,5 +1,6 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.h"
+`include "./constant_values.vh"
+
 module pc(in, out, clk, rst, pc_write);
     input [31:0] in;
     output reg [31:0] out;

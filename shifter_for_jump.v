@@ -1,19 +1,20 @@
 `timescale 1 ns / 1 ns
-module shifter_for_jump(instructs, pc, shifted_address);
 
+module shifter_for_jump(instructs, pc_page, shifted_address);
     output reg [31:0] shifted_address;
-    input [31:0] instructs , pc;
-    always @(instructs or pc) begin
-        shifted_address = {pc[31:28], instructs[25:0], 2'b00};
+    input [31:0] instructs;
+    input [3:0] pc_page;
+    always @(instructs or pc_page) begin
+        shifted_address = {pc_page, instructs[25:0], 2'b00};
     end
 endmodule
 
 
 module shifter_for_jump_test();
     wire [31:0] shifted_address;
-    reg [31:0] instructs , pc;
+    reg [31:0] instructs, pc;
 
-    shifter_for_jump shfj(instructs , pc , shifted_address);
+    shifter_for_jump shfj(instructs , pc[31:28] , shifted_address);
 
     initial begin
         #400
