@@ -1,4 +1,6 @@
 `timescale 1 ns / 1 ns
+`include "./constant_values.h"
+
 module forwarding_unit(EX_MEM_rd_out, EX_MEM_reg_write_out,
                         MEM_WB_rd_out, MEM_WB_reg_write_out,
                         ID_EX_rs_out, ID_EX_rt_out,

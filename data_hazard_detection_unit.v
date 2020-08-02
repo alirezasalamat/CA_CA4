@@ -1,5 +1,6 @@
-module data_hazard_detection_unit(ID_EX_rt, ID_EX_mem_read , equal , IF_ID_rs , IF_ID_rt,
-                                   branch , pc_write , IF_ID_write , mux_hz_unit , flush);
+module data_hazard_detection_unit(ID_EX_rt, ID_EX_mem_read, equal, 
+                                    IF_ID_rs, IF_ID_rt, branch,
+                                    pc_write, IF_ID_write, mux_hz_unit, flush);
 
     input [31:0] ID_EX_rt;
     input ID_EX_mem_read , equal;
