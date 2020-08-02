@@ -63,7 +63,7 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
             branch = 2'b11;
 
         else
-            branch =2'b00;
+            branch = 2'b00;
     end
 
     always @(opcode or ctrl_func or equal) begin
