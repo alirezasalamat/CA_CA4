@@ -27,8 +27,8 @@ module ID_EX_Reg(clk, rst, mem_write_in, mem_read_in, reg_write_in,
     input [31:0] read_data1_in , read_data2_in;
     output reg [31:0] read_data1_out , read_data2_out;
 
-    input [15:0] instr15_0_sign_extended_in;
-    output reg [15:0] instr15_0_sign_extended_out;
+    input [31:0] instr15_0_sign_extended_in;
+    output reg [31:0] instr15_0_sign_extended_out;
 
     input [4:0] rs_in , rt_in , rd_in;
     output reg [4:0] rs_out , rt_out , rd_out;

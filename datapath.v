@@ -63,7 +63,7 @@ module datapath(clk, rst,
     shift_left_2 sh_l_2(instruction_15_0_sign_ext_out, shift_left_2_out);
     
     wire [31:0] adder_branch_out;
-    adder adder_branch(IF_ID_pc_plus_4_out, shift_left_2, adder_branch_out);
+    adder adder_branch(IF_ID_pc_plus_4_out, shift_left_2_out, adder_branch_out);
 
     wire [31:0] mux_pc_src_out;
     mux_32_bit mux_pc_src(adder_pc_4_out, adder_branch_out, mux_pc_src_out, pc_src);
@@ -79,7 +79,7 @@ module datapath(clk, rst,
     wire [31:0] reg_file_read_data_1, reg_file_read_data_2;
     register_file reg_file(IF_ID_rs, IF_ID_rt,
                             MEM_WB_reg_dst_out, mux_mem_to_reg_out, MEM_WB_reg_write_out,
-                            reg_file_read_data_1, reg_file_read_data2, clk);
+                            reg_file_read_data_1, reg_file_read_data_2, clk);
 
     comparator reg_file_comparator(reg_file_read_data_1, reg_file_read_data_2, equal);
 
@@ -130,12 +130,13 @@ module datapath(clk, rst,
     mux_32_bit mux_alu_src(mux_forward_B_out, ID_EX_instruction_15_0_sign_ext_out,
                             mux_alu_src_out, ID_EX_ALU_src_out);
     
-    wire alu_zero_out, alu_result_out;
+    wire alu_zero_out;
+    wire [31:0] alu_result_out;
     alu main_alu(mux_forward_A_out, mux_alu_src_out, alu_result_out, 
                     alu_zero_out, ID_EX_ALU_op_out);
 
     wire [4:0] mux_reg_dst_out;
-    mux_32_bit mux_reg_dst(ID_EX_rt_out, ID_EX_rd_out, mux_reg_dst_out, ID_EX_reg_dst_out);
+    mux_5_bit mux_reg_dst(ID_EX_rt_out, ID_EX_rd_out, mux_reg_dst_out, ID_EX_reg_dst_out);
 
     wire EX_MEM_mem_write_out, EX_MEM_mem_read_out,
             EX_MEM_reg_write_out, EX_MEM_mem_to_reg_out;
@@ -145,8 +146,8 @@ module datapath(clk, rst,
     EX_MEM_Reg ex_mem(clk, rst,
                         ID_EX_mem_write_out, ID_EX_mem_read_out,
                         ID_EX_reg_write_out, ID_EX_mem_to_reg_out,
-                        mux_reg_dst_out, ALU_zero_out,
-                        ALU_result_out, mux_forward_B_out,
+                        mux_reg_dst_out, alu_zero_out,
+                        alu_result_out, mux_forward_B_out,
                         EX_MEM_mem_write_out, EX_MEM_mem_read_out,
                         EX_MEM_reg_write_out, EX_MEM_mem_to_reg_out,
                         EX_MEM_mux_reg_dst_out, EX_MEM_ALU_zero_out,
@@ -181,5 +182,39 @@ module datapath(clk, rst,
     assign dp_EX_MEM_rd = EX_MEM_mux_reg_dst_out;
     assign dp_MEM_WB_rd = MEM_WB_mux_reg_dst_out;
     assign dp_MEM_WB_reg_write = MEM_WB_reg_write_out;
+
+endmodule
+
+module datapath_test();
+    reg clk, rst;
+    reg IF_ID_flush, IF_ID_write, pc_src, pc_jump, pc_write;
+    reg mem_write, mem_read, reg_write,
+            reg_dst, mem_to_reg, 
+            ALU_src, mux_hz_sel;
+    reg [2:0] ALU_op; 
+    reg [1:0] forward_A, forward_B;
+
+    wire [5:0] opcode, func;
+    wire equal;
+    wire [4:0] dp_IF_ID_rs, dp_IF_ID_rt,
+                    dp_ID_EX_rt, dp_EX_MEM_rd,
+                    dp_MEM_WB_rd;
+    wire dp_ID_EX_mem_read, dp_EX_MEM_reg_write, dp_MEM_WB_reg_write;
+
+    datapath dp(clk, rst,
+            IF_ID_flush, IF_ID_write, pc_src, pc_jump, pc_write,
+            mem_write, mem_read, reg_write,
+            reg_dst, mem_to_reg, 
+            ALU_src, mux_hz_sel, ALU_op,
+            forward_A, forward_B,
+            opcode, func, equal,
+            dp_IF_ID_rs, dp_IF_ID_rt,
+            dp_ID_EX_rt, dp_EX_MEM_rd, dp_MEM_WB_rd,
+            dp_ID_EX_mem_read, dp_EX_MEM_reg_write, dp_MEM_WB_reg_write);
+    
+    initial begin
+        rst = 1'b1;
+        #5 rst = 1'b0;    
+    end
 
 endmodule

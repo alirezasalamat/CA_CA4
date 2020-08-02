@@ -19,8 +19,8 @@ module MEM_WB_Reg(clk, rst,
     input mem_to_reg_in;
     output reg mem_to_reg_out;
 
-    input read_data_in;
-    output reg read_data_out;
+    input [31:0] read_data_in;
+    output reg [31:0] read_data_out;
 
     input [4:0] mux_reg_dst_out_in;
     output reg [4:0] mux_reg_dst_out_out;
