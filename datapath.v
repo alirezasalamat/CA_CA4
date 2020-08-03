@@ -179,7 +179,7 @@ module datapath(clk, rst,
     assign dp_IF_ID_rs = IF_ID_rs;
     assign dp_IF_ID_rt = IF_ID_rt;
     assign dp_ID_EX_rt = ID_EX_rt_out;
-    assign dp_ID_EX_rs = ID_EX_rs_out
+    assign dp_ID_EX_rs = ID_EX_rs_out;
     assign dp_EX_MEM_rd = EX_MEM_mux_reg_dst_out;
     assign dp_MEM_WB_rd = MEM_WB_mux_reg_dst_out;
     assign dp_MEM_WB_reg_write = MEM_WB_reg_write_out;
