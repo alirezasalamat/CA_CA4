@@ -9,7 +9,7 @@ module datapath(clk, rst,
                 forward_A, forward_B,
                 opcode, func, equal,
                 dp_IF_ID_rs, dp_IF_ID_rt,
-                dp_ID_EX_rt, dp_EX_MEM_rd, dp_MEM_WB_rd,
+                dp_ID_EX_rt, dp_ID_EX_rs, dp_EX_MEM_rd, dp_MEM_WB_rd,
                 dp_ID_EX_mem_read, dp_EX_MEM_reg_write, dp_MEM_WB_reg_write);
     
     input clk, rst;
@@ -27,7 +27,7 @@ module datapath(clk, rst,
     output reg [5:0] opcode, func;
     output equal;
     output [4:0] dp_IF_ID_rs, dp_IF_ID_rt,
-                    dp_ID_EX_rt, dp_EX_MEM_rd,
+                    dp_ID_EX_rt, dp_ID_EX_rs, dp_EX_MEM_rd,
                     dp_MEM_WB_rd;
     output dp_ID_EX_mem_read, dp_EX_MEM_reg_write, dp_MEM_WB_reg_write;
 
