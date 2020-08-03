@@ -32,7 +32,8 @@ module processor(clk,rst);
                 dp_ID_EX_rt, dp_ID_EX_rs, dp_EX_MEM_rd, dp_MEM_WB_rd,
                 dp_ID_EX_mem_read, dp_EX_MEM_reg_write, dp_MEM_WB_reg_write);
 
-    controller cntrl(equal, opcode, func, reg_dst, jal_reg, );
+    controller cntrl(equal, opcode, func, reg_dst, ALU_src, mem_to_reg,
+                     pc_jump, pc_src, reg_write, mem_read, mem_write, ALU_op, branch);
 
     forwarding_unit frwrd(dp_EX_MEM_rd, dp_EX_MEM_reg_write, dp_MEM_WB_rd,
                           dp_MEM_WB_reg_write, dp_ID_EX_rs, dp_ID_EX_rt,
@@ -43,4 +44,24 @@ module processor(clk,rst);
                                     pc_write, IF_ID_write , mux_hz_sel, IF_ID_flush);
 
 
+endmodule
+
+
+module processor_test();
+    reg clk, rst;
+    processor mips(clk, rst);
+
+    initial begin
+        clk = 1'b1;
+        repeat(2000) #50 clk = ~clk;
+    end
+
+    initial begin
+        rst = 1'b1;
+        #50 rst = 1'b0;
+        #56600 $stop; // it is for testbench no.2
+
+        // #24300 $stop; // it is for testbench no.1
+        
+    end
 endmodule
