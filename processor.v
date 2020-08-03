@@ -38,6 +38,8 @@ module processor(clk,rst);
     forwarding_unit frwrd(dp_EX_MEM_rd, dp_EX_MEM_reg_write, dp_MEM_WB_rd,
                           dp_MEM_WB_reg_write, dp_ID_EX_rs, dp_ID_EX_rt,
                           forward_A, forward_B);
+    always @(forward_A or forward_B)
+        $display("@%t: forward_A = %b, forward_B = %b", $time, forward_A, forward_B);
 
     data_hazard_detection_unit hzrd(dp_ID_EX_rt, dp_ID_EX_mem_read, equal,
                                     dp_IF_ID_rs, dp_IF_ID_rt, branch,
@@ -52,7 +54,7 @@ module processor_test();
     processor mips(clk, rst);
 
     initial begin
-        #100;
+        // #100;
         clk = 1'b1;
         repeat(2000) #50 clk = ~clk;
     end
@@ -60,7 +62,7 @@ module processor_test();
     initial begin
         rst = 1'b1;
         #50 rst = 1'b0;
-        #600 $stop;
+        #1200 $stop;
         // #56600 $stop; // it is for testbench no.2
 
         // #24300 $stop; // it is for testbench no.1

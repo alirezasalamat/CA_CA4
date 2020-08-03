@@ -1,5 +1,6 @@
-addi R1, R0, 5
-nop
-nop
-nop
+addi R1, R1, 5
+addi R2, R2, 6
+add R3, R2, R1
+lw R3, 1028(R0)
+j 1
 nop

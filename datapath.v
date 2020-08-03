@@ -138,8 +138,8 @@ module datapath(clk, rst,
     wire [4:0] mux_reg_dst_out;
     mux_5_bit mux_reg_dst(ID_EX_rt_out, ID_EX_rd_out, mux_reg_dst_out, ID_EX_reg_dst_out);
 
-    always @(mux_reg_dst_out)
-        $display("@%t: MUX_REG_DST: out = %d", $time, mux_reg_dst_out);
+    // always @(mux_reg_dst_out)
+        // $display("@%t: MUX_REG_DST: out = %d", $time, mux_reg_dst_out);
     
     wire EX_MEM_mem_write_out, EX_MEM_mem_read_out,
             EX_MEM_reg_write_out, EX_MEM_mem_to_reg_out;
@@ -170,14 +170,14 @@ module datapath(clk, rst,
                         MEM_WB_reg_write_out, MEM_WB_mem_to_reg_out,
                         MEM_WB_read_data_out, MEM_WB_mux_reg_dst_out, MEM_WB_ALU_result_out);
     
-    always @(MEM_WB_mux_reg_dst_out)
-        $display("@%t: MEM_WB_REG: mux_reg_dst_out = %d", $time, MEM_WB_mux_reg_dst_out);
+    // always @(MEM_WB_mux_reg_dst_out)
+        // $display("@%t: MEM_WB_REG: mux_reg_dst_out = %d", $time, MEM_WB_mux_reg_dst_out);
     
     mux_32_bit mux_mem_to_reg(MEM_WB_ALU_result_out, MEM_WB_read_data_out,
                                 mux_mem_to_reg_out, MEM_WB_mem_to_reg_out);
     
-    always @(mux_mem_to_reg_out)
-        $display("@%t: MUX_MEM_TO_REG: out = %d", $time, mux_mem_to_reg_out);
+    // always @(mux_mem_to_reg_out)
+        // $display("@%t: MUX_MEM_TO_REG: out = %d", $time, mux_mem_to_reg_out);
 
     always @(IF_ID_instruction_out) begin
         opcode = instruction[31:26];
@@ -190,6 +190,7 @@ module datapath(clk, rst,
     assign dp_ID_EX_rs = ID_EX_rs_out;
     assign dp_EX_MEM_rd = EX_MEM_mux_reg_dst_out;
     assign dp_MEM_WB_rd = MEM_WB_mux_reg_dst_out;
+    assign dp_EX_MEM_reg_write = EX_MEM_reg_write_out;
     assign dp_MEM_WB_reg_write = MEM_WB_reg_write_out;
 
 endmodule

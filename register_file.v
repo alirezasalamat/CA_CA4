@@ -24,8 +24,8 @@ module register_file(read_reg1, read_reg2, write_reg, write_data,
                 read_reg2, read_data2);
     end
 
-    always @(clk or reg_write or write_reg or write_data) begin
-        if (clk == 1'b0 && reg_write == 1'b1) begin
+    always @(negedge clk) begin
+        if (reg_write == 1'b1) begin
             registers[write_reg] = write_data;
             $display("@%t: REG_FILE::WRITE: value %d stored in register %d", $time, write_data, write_reg);
         end
