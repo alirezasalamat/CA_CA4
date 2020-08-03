@@ -1,11 +1,11 @@
 `timescale 1 ns/1 ns
 `include "./constant_values.vh"
 
-module controller(equal, opcode, func, reg_dst, pc_to_reg, alu_src, mem_to_reg ,
+module controller(equal, opcode, func, reg_dst, alu_src, mem_to_reg ,
                   pc_jump, pc_src, reg_write, mem_read, mem_write, alu_operation, branch);
     input equal;
     input [5:0] opcode , func;
-    output reg reg_dst , pc_to_reg , alu_src , mem_to_reg ,
+    output reg reg_dst , alu_src , mem_to_reg ,
                pc_jump , pc_src , reg_write , mem_read , mem_write;
 
     // 2'b00 no branch , 2'b01 beq , 2'b10 bne            
@@ -25,12 +25,10 @@ module controller(equal, opcode, func, reg_dst, pc_to_reg, alu_src, mem_to_reg ,
     parameter BEQ = 6'b000100;
     parameter BNE = 6'b000101;
     parameter J = 6'b000010;
-    parameter JAL = 6'b000011;
     parameter ADDI = 6'b001000;
     parameter ANDI = 6'b001100;
 
     //function parameter
-    parameter JR = 6'b001000;
     parameter ADD = 6'b100000;
     parameter AND = 6'b100100;
 
@@ -67,8 +65,8 @@ module controller(equal, opcode, func, reg_dst, pc_to_reg, alu_src, mem_to_reg ,
     end
 
     always @(opcode or ctrl_func or equal) begin
-        {reg_dst, pc_to_reg, alu_src, mem_to_reg,
-            pc_jump, pc_src, reg_write, mem_read, mem_write} = 9'b0;
+        {reg_dst, alu_src, mem_to_reg, pc_jump,
+         pc_src, reg_write, mem_read, mem_write} = 8'b0;
         
         alu_op = 2'bzz;
         
