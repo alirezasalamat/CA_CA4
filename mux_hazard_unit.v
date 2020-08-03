@@ -38,6 +38,14 @@ module mux_hazard_unit(mem_write_in, mem_read_in, reg_write_in,
             mem_to_reg_out = mem_to_reg_in;
             ALU_src_out = ALU_src_in;
             ALU_op_out = ALU_op_in;
+            
         end
+        $display("@%t: MUX_HAZARD_UNIT: mem_write is %d", $time, mem_write_out);
+            $display("@%t: MUX_HAZARD_UNIT: mem_read is %d", $time, mem_read_out);
+            $display("@%t: MUX_HAZARD_UNIT: reg_write is %d", $time, reg_write_out);
+            $display("@%t: MUX_HAZARD_UNIT: reg_dst is %d", $time, reg_dst_out);
+            $display("@%t: MUX_HAZARD_UNIT: mem_to_reg is %d", $time, mem_to_reg_out);
+            $display("@%t: MUX_HAZARD_UNIT: alu_src is %d", $time, ALU_src_out);
+            $display("@%t: MUX_HAZARD_UNIT: alu_op is %d", $time, ALU_op_out);
     end
 endmodule
