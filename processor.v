@@ -52,6 +52,7 @@ module processor_test();
     processor mips(clk, rst);
 
     initial begin
+        #100;
         clk = 1'b1;
         repeat(2000) #50 clk = ~clk;
     end
@@ -59,7 +60,8 @@ module processor_test();
     initial begin
         rst = 1'b1;
         #50 rst = 1'b0;
-        #56600 $stop; // it is for testbench no.2
+        #600 $stop;
+        // #56600 $stop; // it is for testbench no.2
 
         // #24300 $stop; // it is for testbench no.1
         

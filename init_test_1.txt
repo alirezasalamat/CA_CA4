@@ -1,0 +1,5 @@
+addi R1, R0, 5
+nop
+nop
+nop
+nop

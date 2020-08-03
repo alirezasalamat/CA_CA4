@@ -12,6 +12,7 @@ module mux_3_to_1_32_bit(in_0, in_1, in_2, out, sel);
             2'b00: out = in_0;
             2'b01: out = in_1;
             2'b10: out = in_2;
+            default: out = `WORD_ZERO; 
         endcase
     end
 endmodule

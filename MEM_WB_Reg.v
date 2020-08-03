@@ -47,4 +47,8 @@ module MEM_WB_Reg(clk, rst,
         ALU_result_out <= ALU_result_in;
         end
     end
+
+    always @(reg_write_out) begin
+        $display("@%t: MEM_WB_REG: reg_write_out = %b", $time, reg_write_out);
+    end
 endmodule

@@ -23,6 +23,7 @@ module IF_ID_Reg(clk, rst,
             instruction_out <= `WORD_ZERO;
             pc_plus_4_out <= `WORD_ZERO;
             pc_page_out <= 4'b0000;
+            $display("@%t: IF_ID_REG::RESET", $time);
         end
         
         else begin
@@ -31,12 +32,14 @@ module IF_ID_Reg(clk, rst,
                     instruction_out <= `WORD_ZERO;
                     pc_plus_4_out <= `WORD_ZERO;
                     pc_page_out <= 4'b0000;
+                    $display("@%t: IF_ID_REG::FLUSH", $time);
                 end
 
                 else begin
                     instruction_out <= instruction_in;
                     pc_plus_4_out <= pc_plus_4_in;
                     pc_page_out <= pc_page_in;
+                    $display("@%t: IF_ID_REG::WRITE", $time);
                 end
             end
         end

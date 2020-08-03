@@ -8,8 +8,8 @@ module controller(equal, opcode, func, reg_dst, alu_src, mem_to_reg ,
     output reg reg_dst , alu_src , mem_to_reg ,
                pc_jump , pc_src , reg_write , mem_read , mem_write;
 
-    // 2'b00 no branch , 2'b01 beq , 2'b10 bne            
-    output [1:0] branch;
+    // 2'b00 no branch , 2'b01 beq , 2'b10 bne
+    output reg [1:0] branch;
     output [2:0] alu_operation;
 
     //alu_op parameters
@@ -33,7 +33,7 @@ module controller(equal, opcode, func, reg_dst, alu_src, mem_to_reg ,
     parameter AND = 6'b100100;
 
     reg [1:0] alu_op;
-    reg branch;
+    // reg branch;
     reg [5:0] ctrl_func;
 
     alu_controller alucntrl(alu_op, ctrl_func, alu_operation);
@@ -69,7 +69,7 @@ module controller(equal, opcode, func, reg_dst, alu_src, mem_to_reg ,
          pc_src, reg_write, mem_read, mem_write} = 8'b0;
         
         alu_op = 2'bzz;
-        
+        $display("@%t: CTRL::OPCODE_PARSING: opcode = %b", $time, opcode);
         case (opcode)
             REGISTER_TYPE: begin
                 reg_dst = 1'b1;
