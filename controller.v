@@ -1,12 +1,12 @@
 `timescale 1 ns/1 ns
 `include "./constant_values.vh"
 
-module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_src , mem_to_reg ,
-                jump_sel , pc_jump , pc_src , reg_write , mem_read , mem_write , alu_operation , branch);
+module controller(equal, opcode, func, reg_dst, pc_to_reg, alu_src, mem_to_reg ,
+                  pc_jump, pc_src, reg_write, mem_read, mem_write, alu_operation, branch);
     input equal;
     input [5:0] opcode , func;
-    output reg reg_dst , jal_reg , pc_to_reg , alu_src , mem_to_reg ,
-                jump_sel , pc_jump , pc_src , reg_write , mem_read , mem_write;
+    output reg reg_dst , pc_to_reg , alu_src , mem_to_reg ,
+               pc_jump , pc_src , reg_write , mem_read , mem_write;
 
     // 2'b00 no branch , 2'b01 beq , 2'b10 bne            
     output [1:0] branch;
@@ -67,22 +67,16 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
     end
 
     always @(opcode or ctrl_func or equal) begin
-        {reg_dst, jal_reg, pc_to_reg, alu_src, mem_to_reg,
-                jump_sel, pc_jump, pc_src, reg_write, mem_read, mem_write} = 11'b0;
+        {reg_dst, pc_to_reg, alu_src, mem_to_reg,
+            pc_jump, pc_src, reg_write, mem_read, mem_write} = 9'b0;
         
         alu_op = 2'bzz;
         
         case (opcode)
             REGISTER_TYPE: begin
-                if(ctrl_func != JR)begin
-                    reg_dst = 1'b1;
-                    reg_write = 1'b1;
-                    alu_op = RTYPE;
-                end
-                else if(ctrl_func == JR)begin
-                    pc_jump = 1'b1;
-                    alu_op = JTYPE;
-                end
+                reg_dst = 1'b1;
+                reg_write = 1'b1;
+                alu_op = RTYPE;
             end
 
             SW: begin
@@ -110,17 +104,7 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
             end
 
             J: begin
-                jump_sel = 1'b1; 
                 pc_jump = 1'b1;
-                alu_op = JTYPE;
-            end
-
-            JAL: begin
-                jal_reg = 1'b1; 
-                pc_to_reg = 1'b1;
-                jump_sel = 1'b1; 
-                pc_jump = 1'b1;
-                reg_write = 1'b1;
                 alu_op = JTYPE;
             end
 
@@ -135,7 +119,6 @@ module controller(equal , opcode , func , reg_dst , jal_reg , pc_to_reg , alu_sr
                 reg_write = 1'b1;
                 alu_op = RTYPE;
             end
-
         endcase
     end
     
