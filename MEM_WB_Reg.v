@@ -36,6 +36,7 @@ module MEM_WB_Reg(clk, rst,
             read_data_out <= `WORD_ZERO;
             mux_reg_dst_out_out <= `WORD_ZERO;
             ALU_result_out <= `WORD_ZERO;            
+            $display("@%t: MEM_WB_REG: RESET", $time);
         end
         
         else begin
@@ -46,9 +47,5 @@ module MEM_WB_Reg(clk, rst,
         mux_reg_dst_out_out <= mux_reg_dst_out_in;
         ALU_result_out <= ALU_result_in;
         end
-    end
-
-    always @(reg_write_out) begin
-        $display("@%t: MEM_WB_REG: reg_write_out = %b", $time, reg_write_out);
     end
 endmodule

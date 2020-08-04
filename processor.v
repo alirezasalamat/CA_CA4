@@ -39,8 +39,8 @@ module processor(clk,rst);
                           dp_MEM_WB_reg_write, dp_ID_EX_rs, dp_ID_EX_rt,
                           forward_A, forward_B);
     
-    always @(forward_A or forward_B)
-        $display("@%t: PROCESSOR: forward_A = %b, forward_B = %b", $time, forward_A, forward_B);
+    // always @(forward_A or forward_B)
+    //     $display("@%t: PROCESSOR: forward_A = %b, forward_B = %b", $time, forward_A, forward_B);
 
     data_hazard_detection_unit hzrd(dp_ID_EX_rt, dp_ID_EX_mem_read, equal,
                                     dp_IF_ID_rs, dp_IF_ID_rt, branch,

@@ -67,8 +67,6 @@ module ID_EX_Reg(clk, rst, mem_write_in, mem_read_in, reg_write_in,
             rs_out <= rs_in;
             rt_out <= rt_in;
             rd_out <= rd_in;
-            
-            $display("@%t: ID_EX_REG::WRITE", $time);
         end
     end
 endmodule
