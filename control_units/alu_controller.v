@@ -22,12 +22,12 @@ module alu_controller(alu_op, func, alu_operation);
         case(alu_op)
             MTYPE: begin
                 alu_operation = `ALU_ADD;
-                $display("@%t: ALU_CTRL::MTYPE", $time);
+                // $display("@%t: ALU_CTRL::MTYPE", $time);
             end
 
             BTYPE: begin
                 alu_operation = `ALU_SUB;
-                $display("@%t: ALU_CTRL::BTYPE", $time);
+                // $display("@%t: ALU_CTRL::BTYPE", $time);
             end
 
             RTYPE: begin
@@ -54,12 +54,12 @@ module alu_controller(alu_op, func, alu_operation);
 
                     default: alu_operation = `ALU_OFF; 
                 endcase
-                $display("@%t: ALU_CTRL::RTYPE: func = %d", $time, func);
+                // $display("@%t: ALU_CTRL::RTYPE: func = %d", $time, func);
             end
 
             JTYPE: begin
                 alu_operation = `ALU_OFF;
-                $display("@%t: ALU_CTRL::JTYPE", $time);
+                // $display("@%t: ALU_CTRL::JTYPE", $time);
             end
 
             default: alu_operation = `ALU_OFF;

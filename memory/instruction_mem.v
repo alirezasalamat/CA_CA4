@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.vh"
+`include "./constant_values.vh"
 
 module instruction_mem(address, instruction);
     input [31:0] address;
@@ -11,18 +11,17 @@ module instruction_mem(address, instruction);
                 mem[address[15:0] + 2], mem[address[15:0] + 3]};
         $display("@%t: INST_MEM: data at address %d is read", $time, address);
     end
-
-    initial begin
-        $readmemb("test_1.bin", mem);
-        // $readmemb("test_2.bin", mem);
-    end
-    
 endmodule
 
 module inst_mem_test();
     reg [31:0] address;
     wire [31:0] instruction;
     instruction_mem inst_mem_test(address, instruction);
+
+    initial begin
+        $readmemb("./init_tests/init_test_1.bin", inst_mem_test.mem);
+    end
+    
     integer i;
 
     initial begin

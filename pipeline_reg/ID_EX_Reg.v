@@ -49,6 +49,7 @@ module ID_EX_Reg(clk, rst, mem_write_in, mem_read_in, reg_write_in,
             rs_out <= 5'b00000;
             rt_out <= 5'b00000;
             rd_out <= 5'b00000;    
+            $display("@%t: ID_EX_REG::RESET", $time);
         end
         
         else begin

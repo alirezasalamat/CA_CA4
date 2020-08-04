@@ -1,0 +1,9 @@
+addi R1, R0, 1
+addi R10, R0, 10
+START: add R2, R2, R1
+nop
+nop
+beq R2, R10, END
+bne R2, R10, START
+END: nop
+nop

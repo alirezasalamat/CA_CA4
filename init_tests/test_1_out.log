@@ -1,0 +1,876 @@
+# @                   0: PC::RESET; PC is now 0
+# @                   0: IF_ID_REG::RESET
+# @                   0: ID_EX_REG::RESET
+# @                   0: MEM_WB_REG: RESET
+# @                   0: INST_MEM: data at address          0 is read
+# @                   0: ALU::AND: a =          x, b =          x
+# @                   0: DATA_MEM::READ: value       2080 at address     0 is read
+# @                   0: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                   0: CTRL::OPCODE_PARSING: opcode = 000000
+# @                   0: ALU::AND: a =          0, b =          x
+# @                   0: ALU::AND: a =          0, b =          0
+# @                   0: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 100: PC is now          4
+# @                 100: IF_ID_REG::WRITE
+# @                 100: INST_MEM: data at address          4 is read
+# @                 100: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 200: PC is now          8
+# @                 200: IF_ID_REG::WRITE
+# @                 200: INST_MEM: data at address          8 is read
+# @                 200: ALU::ADD: a =          0, b =          0
+# @                 300: PC is now         12
+# @                 300: IF_ID_REG::WRITE
+# @                 300: INST_MEM: data at address         12 is read
+# @                 300: REG_FILE::READ: registers  0 =          0,  3 =          0 are read
+# @                 300: CTRL::OPCODE_PARSING: opcode = 001000
+# @                 300: CTRL::OPCODE_PARSING: opcode = 001000
+# @                 350: REG_FILE::WRITE: value          0 stored in register  0
+# @                 400: PC is now         16
+# @                 400: IF_ID_REG::WRITE
+# @                 400: INST_MEM: data at address         16 is read
+# @                 400: REG_FILE::READ: registers  1 =          0, 10 =          0 are read
+# @                 400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                 400: ALU::ADD: a =          0, b =         40
+# @                 450: REG_FILE::WRITE: value          0 stored in register  1
+# @                 500: PC is now         20
+# @                 500: IF_ID_REG::WRITE
+# @                 500: HAZARD_DETECTION: hazard emerged
+# @                 500: INST_MEM: data at address         20 is read
+# @                 500: DATA_MEM::READ: value          0 at address    40 is read
+# @                 500: HAZARD_DETECTION: hazard emerged
+# @                 500: REG_FILE::READ: registers  2 =          0, 10 =          0 are read
+# @                 500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 500: ALU::ADD: a =          0, b =       1000
+# @                 500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 550: REG_FILE::WRITE: value          0 stored in register  2
+# @                 600: FORWARD: forwarding B from ex_mem
+# @                 600: DATA_MEM::READ: value          0 at address  1000 is read
+# @                 650: REG_FILE::WRITE: value         40 stored in register  3
+# @                 700: PC is now         24
+# @                 700: IF_ID_REG::WRITE
+# @                 700: FORWARD: forwarding B from mem_wb
+# @                 700: INST_MEM: data at address         24 is read
+# @                 700: ALU::ADD: a =          0, b =       1000
+# @                 700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                 700: REG_FILE::READ: registers  1 =          0,  1 =          0 are read
+# @                 700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                 700: ALU::ADD: a =          0, b =          0
+# @                 700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                 750: REG_FILE::WRITE: value          0 stored in register 10
+# @                 800: PC is now         28
+# @                 800: IF_ID_REG::WRITE
+# @                 800: INST_MEM: data at address         28 is read
+# @                 800: REG_FILE::READ: registers  1 =          0,  3 =         40 are read
+# @                 800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 800: ALU::ADD: a =          0, b =          4
+# @                 800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 900: PC is now         32
+# @                 900: IF_ID_REG::WRITE
+# @                 900: FORWARD: forwarding A from ex_mem
+# @                 900: INST_MEM: data at address         32 is read
+# @                 900: ALU::SLT: a =          0, b =          4
+# @                 900: DATA_MEM::READ: value       4128 at address     4 is read
+# @                 900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                 900: ALU::SLT: a =          0, b =          0
+# @                 900: ALU::SLT: a =          4, b =         40
+# @                 900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                 950: REG_FILE::WRITE: value          0 stored in register  2
+# @                1000: PC is now         36
+# @                1000: IF_ID_REG::WRITE
+# @                1000: INST_MEM: data at address         36 is read
+# @                1000: ALU::ADD: a =          4, b =         40
+# @                1000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                1000: ALU::ADD: a =          1, b =         40
+# @                1000: ALU::ADD: a =          0, b =          0
+# @                1050: REG_FILE::WRITE: value          4 stored in register  1
+# @                1100: PC is now         40
+# @                1100: IF_ID_REG::WRITE
+# @                1100: INST_MEM: data at address         40 is read
+# @                1100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                1100: REG_FILE::READ: registers  4 =          0,  0 =          0 are read
+# @                1100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                1100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                1150: REG_FILE::WRITE: value          1 stored in register  4
+# @                1150: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                1150: CTRL::OPCODE_PARSING: opcode = 000100
+# @                1200: PC is now         44
+# @                1200: IF_ID_REG::WRITE
+# @                1200: INST_MEM: data at address         44 is read
+# @                1200: ALU::SUB: a =          0, b =          0
+# @                1200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                1200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                1200: ALU::SUB: a =          1, b =          0
+# @                1200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                1250: REG_FILE::WRITE: value          0 stored in register  0
+# @                1300: PC is now         12
+# @                1300: IF_ID_REG::FLUSH
+# @                1300: INST_MEM: data at address         12 is read
+# @                1300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                1300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1350: REG_FILE::WRITE: value          0 stored in register  0
+# @                1400: PC is now         16
+# @                1400: IF_ID_REG::WRITE
+# @                1400: INST_MEM: data at address         16 is read
+# @                1400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                1400: REG_FILE::READ: registers  1 =          4, 10 =          0 are read
+# @                1400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                1400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                1500: PC is now         20
+# @                1500: IF_ID_REG::WRITE
+# @                1500: HAZARD_DETECTION: hazard emerged
+# @                1500: INST_MEM: data at address         20 is read
+# @                1500: ALU::ADD: a =          0, b =          0
+# @                1500: HAZARD_DETECTION: hazard emerged
+# @                1500: REG_FILE::READ: registers  2 =          0, 10 =          0 are read
+# @                1500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1500: ALU::ADD: a =          4, b =       1000
+# @                1500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1600: FORWARD: forwarding B from ex_mem
+# @                1600: DATA_MEM::READ: value          1 at address  1004 is read
+# @                1650: REG_FILE::WRITE: value          0 stored in register  0
+# @                1700: PC is now         24
+# @                1700: IF_ID_REG::WRITE
+# @                1700: FORWARD: forwarding B from mem_wb
+# @                1700: INST_MEM: data at address         24 is read
+# @                1700: ALU::ADD: a =          0, b =       1004
+# @                1700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                1700: REG_FILE::READ: registers  1 =          4,  1 =          4 are read
+# @                1700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                1700: ALU::ADD: a =          0, b =          0
+# @                1700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                1700: ALU::ADD: a =          0, b =          1
+# @                1750: REG_FILE::WRITE: value          1 stored in register 10
+# @                1800: PC is now         28
+# @                1800: IF_ID_REG::WRITE
+# @                1800: INST_MEM: data at address         28 is read
+# @                1800: DATA_MEM::READ: value     532480 at address     1 is read
+# @                1800: REG_FILE::READ: registers  1 =          4,  3 =         40 are read
+# @                1800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1800: ALU::ADD: a =          4, b =          4
+# @                1800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1900: PC is now         32
+# @                1900: IF_ID_REG::WRITE
+# @                1900: FORWARD: forwarding A from ex_mem
+# @                1900: INST_MEM: data at address         32 is read
+# @                1900: ALU::SLT: a =          4, b =          4
+# @                1900: DATA_MEM::READ: value  537067560 at address     8 is read
+# @                1900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                1900: ALU::SLT: a =          8, b =         40
+# @                1900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                1950: REG_FILE::WRITE: value          1 stored in register  2
+# @                2000: PC is now         36
+# @                2000: IF_ID_REG::WRITE
+# @                2000: INST_MEM: data at address         36 is read
+# @                2000: ALU::ADD: a =          8, b =         40
+# @                2000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                2000: ALU::ADD: a =          1, b =         40
+# @                2000: ALU::ADD: a =          0, b =          0
+# @                2050: REG_FILE::WRITE: value          8 stored in register  1
+# @                2100: PC is now         40
+# @                2100: IF_ID_REG::WRITE
+# @                2100: INST_MEM: data at address         40 is read
+# @                2100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                2100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                2100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                2100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                2150: REG_FILE::WRITE: value          1 stored in register  4
+# @                2200: PC is now         44
+# @                2200: IF_ID_REG::WRITE
+# @                2200: INST_MEM: data at address         44 is read
+# @                2200: ALU::SUB: a =          0, b =          0
+# @                2200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                2200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                2200: ALU::SUB: a =          1, b =          0
+# @                2200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                2250: REG_FILE::WRITE: value          0 stored in register  0
+# @                2300: PC is now         12
+# @                2300: IF_ID_REG::FLUSH
+# @                2300: INST_MEM: data at address         12 is read
+# @                2300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                2300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2350: REG_FILE::WRITE: value          0 stored in register  0
+# @                2400: PC is now         16
+# @                2400: IF_ID_REG::WRITE
+# @                2400: INST_MEM: data at address         16 is read
+# @                2400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                2400: REG_FILE::READ: registers  1 =          8, 10 =          1 are read
+# @                2400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                2400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                2500: PC is now         20
+# @                2500: IF_ID_REG::WRITE
+# @                2500: HAZARD_DETECTION: hazard emerged
+# @                2500: INST_MEM: data at address         20 is read
+# @                2500: ALU::ADD: a =          0, b =          0
+# @                2500: HAZARD_DETECTION: hazard emerged
+# @                2500: REG_FILE::READ: registers  2 =          1, 10 =          1 are read
+# @                2500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2500: ALU::ADD: a =          8, b =       1000
+# @                2500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2600: FORWARD: forwarding B from ex_mem
+# @                2600: DATA_MEM::READ: value          2 at address  1008 is read
+# @                2650: REG_FILE::WRITE: value          0 stored in register  0
+# @                2700: PC is now         24
+# @                2700: IF_ID_REG::WRITE
+# @                2700: FORWARD: forwarding B from mem_wb
+# @                2700: INST_MEM: data at address         24 is read
+# @                2700: ALU::ADD: a =          1, b =       1008
+# @                2700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                2700: REG_FILE::READ: registers  1 =          8,  1 =          8 are read
+# @                2700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                2700: ALU::ADD: a =          1, b =          0
+# @                2700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                2700: ALU::ADD: a =          1, b =          2
+# @                2750: REG_FILE::WRITE: value          2 stored in register 10
+# @                2800: PC is now         28
+# @                2800: IF_ID_REG::WRITE
+# @                2800: INST_MEM: data at address         28 is read
+# @                2800: DATA_MEM::READ: value  536870928 at address     3 is read
+# @                2800: REG_FILE::READ: registers  1 =          8,  3 =         40 are read
+# @                2800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2800: ALU::ADD: a =          8, b =          4
+# @                2800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2900: PC is now         32
+# @                2900: IF_ID_REG::WRITE
+# @                2900: FORWARD: forwarding A from ex_mem
+# @                2900: INST_MEM: data at address         32 is read
+# @                2900: ALU::SLT: a =          8, b =          4
+# @                2900: DATA_MEM::READ: value 2351563752 at address    12 is read
+# @                2900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                2900: ALU::SLT: a =          8, b =          8
+# @                2900: ALU::SLT: a =         12, b =         40
+# @                2900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                2950: REG_FILE::WRITE: value          3 stored in register  2
+# @                3000: PC is now         36
+# @                3000: IF_ID_REG::WRITE
+# @                3000: INST_MEM: data at address         36 is read
+# @                3000: ALU::ADD: a =         12, b =         40
+# @                3000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                3000: ALU::ADD: a =          1, b =         40
+# @                3000: ALU::ADD: a =          0, b =          0
+# @                3050: REG_FILE::WRITE: value         12 stored in register  1
+# @                3100: PC is now         40
+# @                3100: IF_ID_REG::WRITE
+# @                3100: INST_MEM: data at address         40 is read
+# @                3100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                3100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                3100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                3100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                3150: REG_FILE::WRITE: value          1 stored in register  4
+# @                3200: PC is now         44
+# @                3200: IF_ID_REG::WRITE
+# @                3200: INST_MEM: data at address         44 is read
+# @                3200: ALU::SUB: a =          0, b =          0
+# @                3200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                3200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                3200: ALU::SUB: a =          1, b =          0
+# @                3200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                3250: REG_FILE::WRITE: value          0 stored in register  0
+# @                3300: PC is now         12
+# @                3300: IF_ID_REG::FLUSH
+# @                3300: INST_MEM: data at address         12 is read
+# @                3300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                3300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3350: REG_FILE::WRITE: value          0 stored in register  0
+# @                3400: PC is now         16
+# @                3400: IF_ID_REG::WRITE
+# @                3400: INST_MEM: data at address         16 is read
+# @                3400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                3400: REG_FILE::READ: registers  1 =         12, 10 =          2 are read
+# @                3400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                3400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                3500: PC is now         20
+# @                3500: IF_ID_REG::WRITE
+# @                3500: HAZARD_DETECTION: hazard emerged
+# @                3500: INST_MEM: data at address         20 is read
+# @                3500: ALU::ADD: a =          0, b =          0
+# @                3500: HAZARD_DETECTION: hazard emerged
+# @                3500: REG_FILE::READ: registers  2 =          3, 10 =          2 are read
+# @                3500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3500: ALU::ADD: a =         12, b =       1000
+# @                3500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3600: FORWARD: forwarding B from ex_mem
+# @                3600: DATA_MEM::READ: value          3 at address  1012 is read
+# @                3650: REG_FILE::WRITE: value          0 stored in register  0
+# @                3700: PC is now         24
+# @                3700: IF_ID_REG::WRITE
+# @                3700: FORWARD: forwarding B from mem_wb
+# @                3700: INST_MEM: data at address         24 is read
+# @                3700: ALU::ADD: a =          3, b =       1012
+# @                3700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                3700: REG_FILE::READ: registers  1 =         12,  1 =         12 are read
+# @                3700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                3700: ALU::ADD: a =          3, b =          0
+# @                3700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                3700: ALU::ADD: a =          3, b =          3
+# @                3750: REG_FILE::WRITE: value          3 stored in register 10
+# @                3800: PC is now         28
+# @                3800: IF_ID_REG::WRITE
+# @                3800: INST_MEM: data at address         28 is read
+# @                3800: DATA_MEM::READ: value  270540803 at address     6 is read
+# @                3800: REG_FILE::READ: registers  1 =         12,  3 =         40 are read
+# @                3800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3800: ALU::ADD: a =         12, b =          4
+# @                3800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3900: PC is now         32
+# @                3900: IF_ID_REG::WRITE
+# @                3900: FORWARD: forwarding A from ex_mem
+# @                3900: INST_MEM: data at address         32 is read
+# @                3900: ALU::SLT: a =         12, b =          4
+# @                3900: DATA_MEM::READ: value    4853792 at address    16 is read
+# @                3900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                3900: ALU::SLT: a =         12, b =         12
+# @                3900: ALU::SLT: a =         16, b =         40
+# @                3900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                3950: REG_FILE::WRITE: value          6 stored in register  2
+# @                4000: PC is now         36
+# @                4000: IF_ID_REG::WRITE
+# @                4000: INST_MEM: data at address         36 is read
+# @                4000: ALU::ADD: a =         16, b =         40
+# @                4000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                4000: ALU::ADD: a =          1, b =         40
+# @                4000: ALU::ADD: a =          0, b =          0
+# @                4050: REG_FILE::WRITE: value         16 stored in register  1
+# @                4100: PC is now         40
+# @                4100: IF_ID_REG::WRITE
+# @                4100: INST_MEM: data at address         40 is read
+# @                4100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                4100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                4100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                4100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                4150: REG_FILE::WRITE: value          1 stored in register  4
+# @                4200: PC is now         44
+# @                4200: IF_ID_REG::WRITE
+# @                4200: INST_MEM: data at address         44 is read
+# @                4200: ALU::SUB: a =          0, b =          0
+# @                4200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                4200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                4200: ALU::SUB: a =          1, b =          0
+# @                4200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                4250: REG_FILE::WRITE: value          0 stored in register  0
+# @                4300: PC is now         12
+# @                4300: IF_ID_REG::FLUSH
+# @                4300: INST_MEM: data at address         12 is read
+# @                4300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                4300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4350: REG_FILE::WRITE: value          0 stored in register  0
+# @                4400: PC is now         16
+# @                4400: IF_ID_REG::WRITE
+# @                4400: INST_MEM: data at address         16 is read
+# @                4400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                4400: REG_FILE::READ: registers  1 =         16, 10 =          3 are read
+# @                4400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                4400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                4500: PC is now         20
+# @                4500: IF_ID_REG::WRITE
+# @                4500: HAZARD_DETECTION: hazard emerged
+# @                4500: INST_MEM: data at address         20 is read
+# @                4500: ALU::ADD: a =          0, b =          0
+# @                4500: HAZARD_DETECTION: hazard emerged
+# @                4500: REG_FILE::READ: registers  2 =          6, 10 =          3 are read
+# @                4500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4500: ALU::ADD: a =         16, b =       1000
+# @                4500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4600: FORWARD: forwarding B from ex_mem
+# @                4600: DATA_MEM::READ: value          4 at address  1016 is read
+# @                4650: REG_FILE::WRITE: value          0 stored in register  0
+# @                4700: PC is now         24
+# @                4700: IF_ID_REG::WRITE
+# @                4700: FORWARD: forwarding B from mem_wb
+# @                4700: INST_MEM: data at address         24 is read
+# @                4700: ALU::ADD: a =          6, b =       1016
+# @                4700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                4700: REG_FILE::READ: registers  1 =         16,  1 =         16 are read
+# @                4700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                4700: ALU::ADD: a =          6, b =          0
+# @                4700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                4700: ALU::ADD: a =          6, b =          4
+# @                4750: REG_FILE::WRITE: value          4 stored in register 10
+# @                4800: PC is now         28
+# @                4800: IF_ID_REG::WRITE
+# @                4800: INST_MEM: data at address         28 is read
+# @                4800: DATA_MEM::READ: value    2657322 at address    10 is read
+# @                4800: REG_FILE::READ: registers  1 =         16,  3 =         40 are read
+# @                4800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4800: ALU::ADD: a =         16, b =          4
+# @                4800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4900: PC is now         32
+# @                4900: IF_ID_REG::WRITE
+# @                4900: FORWARD: forwarding A from ex_mem
+# @                4900: INST_MEM: data at address         32 is read
+# @                4900: ALU::SLT: a =         16, b =          4
+# @                4900: DATA_MEM::READ: value  539033604 at address    20 is read
+# @                4900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                4900: ALU::SLT: a =         16, b =         16
+# @                4900: ALU::SLT: a =         20, b =         40
+# @                4900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                4950: REG_FILE::WRITE: value         10 stored in register  2
+# @                5000: PC is now         36
+# @                5000: IF_ID_REG::WRITE
+# @                5000: INST_MEM: data at address         36 is read
+# @                5000: ALU::ADD: a =         20, b =         40
+# @                5000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                5000: ALU::ADD: a =          1, b =         40
+# @                5000: ALU::ADD: a =          0, b =          0
+# @                5050: REG_FILE::WRITE: value         20 stored in register  1
+# @                5100: PC is now         40
+# @                5100: IF_ID_REG::WRITE
+# @                5100: INST_MEM: data at address         40 is read
+# @                5100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                5100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                5100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                5100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                5150: REG_FILE::WRITE: value          1 stored in register  4
+# @                5200: PC is now         44
+# @                5200: IF_ID_REG::WRITE
+# @                5200: INST_MEM: data at address         44 is read
+# @                5200: ALU::SUB: a =          0, b =          0
+# @                5200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                5200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                5200: ALU::SUB: a =          1, b =          0
+# @                5200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                5250: REG_FILE::WRITE: value          0 stored in register  0
+# @                5300: PC is now         12
+# @                5300: IF_ID_REG::FLUSH
+# @                5300: INST_MEM: data at address         12 is read
+# @                5300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                5300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5350: REG_FILE::WRITE: value          0 stored in register  0
+# @                5400: PC is now         16
+# @                5400: IF_ID_REG::WRITE
+# @                5400: INST_MEM: data at address         16 is read
+# @                5400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                5400: REG_FILE::READ: registers  1 =         20, 10 =          4 are read
+# @                5400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                5400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                5500: PC is now         20
+# @                5500: IF_ID_REG::WRITE
+# @                5500: HAZARD_DETECTION: hazard emerged
+# @                5500: INST_MEM: data at address         20 is read
+# @                5500: ALU::ADD: a =          0, b =          0
+# @                5500: HAZARD_DETECTION: hazard emerged
+# @                5500: REG_FILE::READ: registers  2 =         10, 10 =          4 are read
+# @                5500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5500: ALU::ADD: a =         20, b =       1000
+# @                5500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5600: FORWARD: forwarding B from ex_mem
+# @                5600: DATA_MEM::READ: value          5 at address  1020 is read
+# @                5650: REG_FILE::WRITE: value          0 stored in register  0
+# @                5700: PC is now         24
+# @                5700: IF_ID_REG::WRITE
+# @                5700: FORWARD: forwarding B from mem_wb
+# @                5700: INST_MEM: data at address         24 is read
+# @                5700: ALU::ADD: a =         10, b =       1020
+# @                5700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                5700: REG_FILE::READ: registers  1 =         20,  1 =         20 are read
+# @                5700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                5700: ALU::ADD: a =         10, b =          0
+# @                5700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                5700: ALU::ADD: a =         10, b =          5
+# @                5750: REG_FILE::WRITE: value          5 stored in register 10
+# @                5800: PC is now         28
+# @                5800: IF_ID_REG::WRITE
+# @                5800: INST_MEM: data at address         28 is read
+# @                5800: DATA_MEM::READ: value 3892333072 at address    15 is read
+# @                5800: REG_FILE::READ: registers  1 =         20,  3 =         40 are read
+# @                5800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5800: ALU::ADD: a =         20, b =          4
+# @                5800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5900: PC is now         32
+# @                5900: IF_ID_REG::WRITE
+# @                5900: FORWARD: forwarding A from ex_mem
+# @                5900: INST_MEM: data at address         32 is read
+# @                5900: ALU::SLT: a =         20, b =          4
+# @                5900: DATA_MEM::READ: value    2301994 at address    24 is read
+# @                5900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                5900: ALU::SLT: a =         20, b =         20
+# @                5900: ALU::SLT: a =         24, b =         40
+# @                5900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                5950: REG_FILE::WRITE: value         15 stored in register  2
+# @                6000: PC is now         36
+# @                6000: IF_ID_REG::WRITE
+# @                6000: INST_MEM: data at address         36 is read
+# @                6000: ALU::ADD: a =         24, b =         40
+# @                6000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                6000: ALU::ADD: a =          1, b =         40
+# @                6000: ALU::ADD: a =          0, b =          0
+# @                6050: REG_FILE::WRITE: value         24 stored in register  1
+# @                6100: PC is now         40
+# @                6100: IF_ID_REG::WRITE
+# @                6100: INST_MEM: data at address         40 is read
+# @                6100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                6100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                6100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                6100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                6150: REG_FILE::WRITE: value          1 stored in register  4
+# @                6200: PC is now         44
+# @                6200: IF_ID_REG::WRITE
+# @                6200: INST_MEM: data at address         44 is read
+# @                6200: ALU::SUB: a =          0, b =          0
+# @                6200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                6200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                6200: ALU::SUB: a =          1, b =          0
+# @                6200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                6250: REG_FILE::WRITE: value          0 stored in register  0
+# @                6300: PC is now         12
+# @                6300: IF_ID_REG::FLUSH
+# @                6300: INST_MEM: data at address         12 is read
+# @                6300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                6300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6350: REG_FILE::WRITE: value          0 stored in register  0
+# @                6400: PC is now         16
+# @                6400: IF_ID_REG::WRITE
+# @                6400: INST_MEM: data at address         16 is read
+# @                6400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                6400: REG_FILE::READ: registers  1 =         24, 10 =          5 are read
+# @                6400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                6400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                6500: PC is now         20
+# @                6500: IF_ID_REG::WRITE
+# @                6500: HAZARD_DETECTION: hazard emerged
+# @                6500: INST_MEM: data at address         20 is read
+# @                6500: ALU::ADD: a =          0, b =          0
+# @                6500: HAZARD_DETECTION: hazard emerged
+# @                6500: REG_FILE::READ: registers  2 =         15, 10 =          5 are read
+# @                6500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6500: ALU::ADD: a =         24, b =       1000
+# @                6500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6600: FORWARD: forwarding B from ex_mem
+# @                6600: DATA_MEM::READ: value          6 at address  1024 is read
+# @                6650: REG_FILE::WRITE: value          0 stored in register  0
+# @                6700: PC is now         24
+# @                6700: IF_ID_REG::WRITE
+# @                6700: FORWARD: forwarding B from mem_wb
+# @                6700: INST_MEM: data at address         24 is read
+# @                6700: ALU::ADD: a =         15, b =       1024
+# @                6700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                6700: REG_FILE::READ: registers  1 =         24,  1 =         24 are read
+# @                6700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                6700: ALU::ADD: a =         15, b =          0
+# @                6700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                6700: ALU::ADD: a =         15, b =          6
+# @                6750: REG_FILE::WRITE: value          6 stored in register 10
+# @                6800: PC is now         28
+# @                6800: IF_ID_REG::WRITE
+# @                6800: INST_MEM: data at address         28 is read
+# @                6800: DATA_MEM::READ: value  553649152 at address    21 is read
+# @                6800: REG_FILE::READ: registers  1 =         24,  3 =         40 are read
+# @                6800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6800: ALU::ADD: a =         24, b =          4
+# @                6800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6900: PC is now         32
+# @                6900: IF_ID_REG::WRITE
+# @                6900: FORWARD: forwarding A from ex_mem
+# @                6900: INST_MEM: data at address         32 is read
+# @                6900: ALU::SLT: a =         24, b =          4
+# @                6900: DATA_MEM::READ: value  276824065 at address    28 is read
+# @                6900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                6900: ALU::SLT: a =         24, b =         24
+# @                6900: ALU::SLT: a =         28, b =         40
+# @                6900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                6950: REG_FILE::WRITE: value         21 stored in register  2
+# @                7000: PC is now         36
+# @                7000: IF_ID_REG::WRITE
+# @                7000: INST_MEM: data at address         36 is read
+# @                7000: ALU::ADD: a =         28, b =         40
+# @                7000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                7000: ALU::ADD: a =          1, b =         40
+# @                7000: ALU::ADD: a =          0, b =          0
+# @                7050: REG_FILE::WRITE: value         28 stored in register  1
+# @                7100: PC is now         40
+# @                7100: IF_ID_REG::WRITE
+# @                7100: INST_MEM: data at address         40 is read
+# @                7100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                7100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                7100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                7100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                7150: REG_FILE::WRITE: value          1 stored in register  4
+# @                7200: PC is now         44
+# @                7200: IF_ID_REG::WRITE
+# @                7200: INST_MEM: data at address         44 is read
+# @                7200: ALU::SUB: a =          0, b =          0
+# @                7200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                7200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                7200: ALU::SUB: a =          1, b =          0
+# @                7200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                7250: REG_FILE::WRITE: value          0 stored in register  0
+# @                7300: PC is now         12
+# @                7300: IF_ID_REG::FLUSH
+# @                7300: INST_MEM: data at address         12 is read
+# @                7300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                7300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7350: REG_FILE::WRITE: value          0 stored in register  0
+# @                7400: PC is now         16
+# @                7400: IF_ID_REG::WRITE
+# @                7400: INST_MEM: data at address         16 is read
+# @                7400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                7400: REG_FILE::READ: registers  1 =         28, 10 =          6 are read
+# @                7400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                7400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                7500: PC is now         20
+# @                7500: IF_ID_REG::WRITE
+# @                7500: HAZARD_DETECTION: hazard emerged
+# @                7500: INST_MEM: data at address         20 is read
+# @                7500: ALU::ADD: a =          0, b =          0
+# @                7500: HAZARD_DETECTION: hazard emerged
+# @                7500: REG_FILE::READ: registers  2 =         21, 10 =          6 are read
+# @                7500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7500: ALU::ADD: a =         28, b =       1000
+# @                7500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7600: FORWARD: forwarding B from ex_mem
+# @                7600: DATA_MEM::READ: value          7 at address  1028 is read
+# @                7650: REG_FILE::WRITE: value          0 stored in register  0
+# @                7700: PC is now         24
+# @                7700: IF_ID_REG::WRITE
+# @                7700: FORWARD: forwarding B from mem_wb
+# @                7700: INST_MEM: data at address         24 is read
+# @                7700: ALU::ADD: a =         21, b =       1028
+# @                7700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                7700: REG_FILE::READ: registers  1 =         28,  1 =         28 are read
+# @                7700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                7700: ALU::ADD: a =         21, b =          0
+# @                7700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                7700: ALU::ADD: a =         21, b =          7
+# @                7750: REG_FILE::WRITE: value          7 stored in register 10
+# @                7800: PC is now         28
+# @                7800: IF_ID_REG::WRITE
+# @                7800: INST_MEM: data at address         28 is read
+# @                7800: DATA_MEM::READ: value  276824065 at address    28 is read
+# @                7800: REG_FILE::READ: registers  1 =         28,  3 =         40 are read
+# @                7800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7800: ALU::ADD: a =         28, b =          4
+# @                7800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7900: PC is now         32
+# @                7900: IF_ID_REG::WRITE
+# @                7900: FORWARD: forwarding A from ex_mem
+# @                7900: INST_MEM: data at address         32 is read
+# @                7900: ALU::SLT: a =         28, b =          4
+# @                7900: DATA_MEM::READ: value  134217731 at address    32 is read
+# @                7900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                7900: ALU::SLT: a =         28, b =         28
+# @                7900: ALU::SLT: a =         32, b =         40
+# @                7900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                7950: REG_FILE::WRITE: value         28 stored in register  2
+# @                8000: PC is now         36
+# @                8000: IF_ID_REG::WRITE
+# @                8000: INST_MEM: data at address         36 is read
+# @                8000: ALU::ADD: a =         32, b =         40
+# @                8000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                8000: ALU::ADD: a =          1, b =         40
+# @                8000: ALU::ADD: a =          0, b =          0
+# @                8050: REG_FILE::WRITE: value         32 stored in register  1
+# @                8100: PC is now         40
+# @                8100: IF_ID_REG::WRITE
+# @                8100: INST_MEM: data at address         40 is read
+# @                8100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                8100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                8100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                8100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                8150: REG_FILE::WRITE: value          1 stored in register  4
+# @                8200: PC is now         44
+# @                8200: IF_ID_REG::WRITE
+# @                8200: INST_MEM: data at address         44 is read
+# @                8200: ALU::SUB: a =          0, b =          0
+# @                8200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                8200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                8200: ALU::SUB: a =          1, b =          0
+# @                8200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                8250: REG_FILE::WRITE: value          0 stored in register  0
+# @                8300: PC is now         12
+# @                8300: IF_ID_REG::FLUSH
+# @                8300: INST_MEM: data at address         12 is read
+# @                8300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                8300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8350: REG_FILE::WRITE: value          0 stored in register  0
+# @                8400: PC is now         16
+# @                8400: IF_ID_REG::WRITE
+# @                8400: INST_MEM: data at address         16 is read
+# @                8400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                8400: REG_FILE::READ: registers  1 =         32, 10 =          7 are read
+# @                8400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                8400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                8500: PC is now         20
+# @                8500: IF_ID_REG::WRITE
+# @                8500: HAZARD_DETECTION: hazard emerged
+# @                8500: INST_MEM: data at address         20 is read
+# @                8500: ALU::ADD: a =          0, b =          0
+# @                8500: HAZARD_DETECTION: hazard emerged
+# @                8500: REG_FILE::READ: registers  2 =         28, 10 =          7 are read
+# @                8500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8500: ALU::ADD: a =         32, b =       1000
+# @                8500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8600: FORWARD: forwarding B from ex_mem
+# @                8600: DATA_MEM::READ: value          8 at address  1032 is read
+# @                8650: REG_FILE::WRITE: value          0 stored in register  0
+# @                8700: PC is now         24
+# @                8700: IF_ID_REG::WRITE
+# @                8700: FORWARD: forwarding B from mem_wb
+# @                8700: INST_MEM: data at address         24 is read
+# @                8700: ALU::ADD: a =         28, b =       1032
+# @                8700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                8700: REG_FILE::READ: registers  1 =         32,  1 =         32 are read
+# @                8700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                8700: ALU::ADD: a =         28, b =          0
+# @                8700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                8700: ALU::ADD: a =         28, b =          8
+# @                8750: REG_FILE::WRITE: value          8 stored in register 10
+# @                8800: PC is now         28
+# @                8800: IF_ID_REG::WRITE
+# @                8800: INST_MEM: data at address         28 is read
+# @                8800: DATA_MEM::READ: value 2885814224 at address    36 is read
+# @                8800: REG_FILE::READ: registers  1 =         32,  3 =         40 are read
+# @                8800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8800: ALU::ADD: a =         32, b =          4
+# @                8800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8900: PC is now         32
+# @                8900: IF_ID_REG::WRITE
+# @                8900: FORWARD: forwarding A from ex_mem
+# @                8900: INST_MEM: data at address         32 is read
+# @                8900: ALU::SLT: a =         32, b =          4
+# @                8900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                8900: ALU::SLT: a =         32, b =         32
+# @                8900: ALU::SLT: a =         36, b =         40
+# @                8900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                8950: REG_FILE::WRITE: value         36 stored in register  2
+# @                9000: PC is now         36
+# @                9000: IF_ID_REG::WRITE
+# @                9000: INST_MEM: data at address         36 is read
+# @                9000: ALU::ADD: a =         36, b =         40
+# @                9000: DATA_MEM::READ: value     532480 at address     1 is read
+# @                9000: ALU::ADD: a =          1, b =         40
+# @                9000: ALU::ADD: a =          0, b =          0
+# @                9050: REG_FILE::WRITE: value         36 stored in register  1
+# @                9100: PC is now         40
+# @                9100: IF_ID_REG::WRITE
+# @                9100: INST_MEM: data at address         40 is read
+# @                9100: DATA_MEM::READ: value       2080 at address     0 is read
+# @                9100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                9100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                9100: CTRL::OPCODE_PARSING: opcode = 000100
+# @                9150: REG_FILE::WRITE: value          1 stored in register  4
+# @                9200: PC is now         44
+# @                9200: IF_ID_REG::WRITE
+# @                9200: INST_MEM: data at address         44 is read
+# @                9200: ALU::SUB: a =          0, b =          0
+# @                9200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                9200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                9200: ALU::SUB: a =          1, b =          0
+# @                9200: CTRL::OPCODE_PARSING: opcode = 000010
+# @                9250: REG_FILE::WRITE: value          0 stored in register  0
+# @                9300: PC is now         12
+# @                9300: IF_ID_REG::FLUSH
+# @                9300: INST_MEM: data at address         12 is read
+# @                9300: DATA_MEM::READ: value     532480 at address     1 is read
+# @                9300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9300: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9350: REG_FILE::WRITE: value          0 stored in register  0
+# @                9400: PC is now         16
+# @                9400: IF_ID_REG::WRITE
+# @                9400: INST_MEM: data at address         16 is read
+# @                9400: DATA_MEM::READ: value       2080 at address     0 is read
+# @                9400: REG_FILE::READ: registers  1 =         36, 10 =          8 are read
+# @                9400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                9400: CTRL::OPCODE_PARSING: opcode = 100011
+# @                9500: PC is now         20
+# @                9500: IF_ID_REG::WRITE
+# @                9500: HAZARD_DETECTION: hazard emerged
+# @                9500: INST_MEM: data at address         20 is read
+# @                9500: ALU::ADD: a =          0, b =          0
+# @                9500: HAZARD_DETECTION: hazard emerged
+# @                9500: REG_FILE::READ: registers  2 =         36, 10 =          8 are read
+# @                9500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9500: ALU::ADD: a =         36, b =       1000
+# @                9500: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9600: FORWARD: forwarding B from ex_mem
+# @                9600: DATA_MEM::READ: value          9 at address  1036 is read
+# @                9650: REG_FILE::WRITE: value          0 stored in register  0
+# @                9700: PC is now         24
+# @                9700: IF_ID_REG::WRITE
+# @                9700: FORWARD: forwarding B from mem_wb
+# @                9700: INST_MEM: data at address         24 is read
+# @                9700: ALU::ADD: a =         36, b =       1036
+# @                9700: DATA_MEM::READ: value       2080 at address     0 is read
+# @                9700: REG_FILE::READ: registers  1 =         36,  1 =         36 are read
+# @                9700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                9700: ALU::ADD: a =         36, b =          0
+# @                9700: CTRL::OPCODE_PARSING: opcode = 001000
+# @                9700: ALU::ADD: a =         36, b =          9
+# @                9750: REG_FILE::WRITE: value          9 stored in register 10
+# @                9800: PC is now         28
+# @                9800: IF_ID_REG::WRITE
+# @                9800: INST_MEM: data at address         28 is read
+# @                9800: DATA_MEM::READ: value          0 at address    45 is read
+# @                9800: REG_FILE::READ: registers  1 =         36,  3 =         40 are read
+# @                9800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9800: ALU::ADD: a =         36, b =          4
+# @                9800: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9900: PC is now         32
+# @                9900: IF_ID_REG::WRITE
+# @                9900: FORWARD: forwarding A from ex_mem
+# @                9900: INST_MEM: data at address         32 is read
+# @                9900: ALU::SLT: a =         36, b =          4
+# @                9900: DATA_MEM::READ: value          0 at address    40 is read
+# @                9900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                9900: ALU::SLT: a =         36, b =         36
+# @                9900: ALU::SLT: a =         40, b =         40
+# @                9900: CTRL::OPCODE_PARSING: opcode = 000000
+# @                9950: REG_FILE::WRITE: value         45 stored in register  2
+# @               10000: PC is now         36
+# @               10000: IF_ID_REG::WRITE
+# @               10000: INST_MEM: data at address         36 is read
+# @               10000: ALU::ADD: a =         40, b =         40
+# @               10000: DATA_MEM::READ: value       2080 at address     0 is read
+# @               10000: ALU::ADD: a =          0, b =         40
+# @               10000: ALU::ADD: a =          0, b =          0
+# @               10050: REG_FILE::WRITE: value         40 stored in register  1
+# @               10100: PC is now         40
+# @               10100: IF_ID_REG::WRITE
+# @               10100: INST_MEM: data at address         40 is read
+# @               10100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               10100: CTRL::OPCODE_PARSING: opcode = 000100
+# @               10100: CTRL::OPCODE_PARSING: opcode = 000100
+# @               10150: REG_FILE::WRITE: value          0 stored in register  4
+# @               10150: REG_FILE::READ: registers  4 =          0,  0 =          0 are read
+# @               10150: CTRL::OPCODE_PARSING: opcode = 000100
+# @               10200: PC is now         44
+# @               10200: IF_ID_REG::FLUSH
+# @               10200: INST_MEM: data at address         44 is read
+# @               10200: ALU::SUB: a =          0, b =          0
+# @               10200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               10200: CTRL::OPCODE_PARSING: opcode = 000000
+# @               10200: CTRL::OPCODE_PARSING: opcode = 000000
+# @               10250: REG_FILE::WRITE: value          0 stored in register  0
+# @               10300: PC is now         48
+# @               10300: IF_ID_REG::WRITE
+# @               10300: INST_MEM: data at address         48 is read
+# @               10300: REG_FILE::READ: registers  0 =          0,  2 =         45 are read
+# @               10300: CTRL::OPCODE_PARSING: opcode = 101011
+# @               10300: CTRL::OPCODE_PARSING: opcode = 101011
+# @               10350: REG_FILE::WRITE: value          0 stored in register  0
+# @               10400: PC is now         52
+# @               10400: IF_ID_REG::WRITE
+# @               10400: INST_MEM: data at address         52 is read
+# @               10400: ALU::ADD: a =          0, b =          0
+# @               10400: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               10400: CTRL::OPCODE_PARSING: opcode = 000000
+# @               10400: ALU::ADD: a =          0, b =       2000
+# @               10400: CTRL::OPCODE_PARSING: opcode = 000000
+# @               10500: PC is now         56
+# @               10500: IF_ID_REG::WRITE
+# @               10500: INST_MEM: data at address         56 is read
+# @               10500: DATA_MEM::READ: value          x at address  2000 is read
+# @               10500: ALU::ADD: a =          0, b =         45
+# @               10500: ALU::ADD: a =          0, b =          0
+# @               10550: REG_FILE::WRITE: value          0 stored in register  0
+# @               10600: PC is now         60
+# @               10600: IF_ID_REG::WRITE
+# @               10600: DATA_MEM::WRITE: value         45 stored at address  2000
+# @               10600: INST_MEM: data at address         60 is read
+# @               10600: DATA_MEM::READ: value       2080 at address     0 is read

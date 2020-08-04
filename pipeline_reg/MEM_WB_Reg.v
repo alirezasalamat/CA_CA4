@@ -28,7 +28,7 @@ module MEM_WB_Reg(clk, rst,
     input [31:0] ALU_result_in;
     output reg [31:0] ALU_result_out;
 
-    always @(posedge clk) begin
+    always @(posedge clk or posedge rst) begin
         if (rst == 1'b1) begin
             reg_write_out <= 1'b0;
             mem_to_reg_out <= 1'b0;
@@ -36,6 +36,7 @@ module MEM_WB_Reg(clk, rst,
             read_data_out <= `WORD_ZERO;
             mux_reg_dst_out_out <= `WORD_ZERO;
             ALU_result_out <= `WORD_ZERO;            
+            $display("@%t: MEM_WB_REG: RESET", $time);
         end
         
         else begin

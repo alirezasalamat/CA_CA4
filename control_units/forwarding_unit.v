@@ -27,7 +27,7 @@ module forwarding_unit(EX_MEM_rd_out, EX_MEM_reg_write_out,
     assign forward_A_from_mem_wb = (MEM_WB_reg_write_out == 1'b1) &&
                                     (ID_EX_rs_out == MEM_WB_rd_out) &&
                                     (MEM_WB_rd_out != 5'b00000) &&
-                                    (~forward_A_from_ex_mem);
+                                    (forward_A_from_ex_mem == 1'b0);
 
     assign forward_B_from_ex_mem = (EX_MEM_reg_write_out == 1'b1) && 
                                     (ID_EX_rt_out == EX_MEM_rd_out) &&
@@ -36,22 +36,32 @@ module forwarding_unit(EX_MEM_rd_out, EX_MEM_reg_write_out,
     assign forward_B_from_mem_wb = (MEM_WB_reg_write_out == 1'b1) &&
                                     (ID_EX_rt_out == MEM_WB_rd_out) &&
                                     (MEM_WB_rd_out != 5'b00000) &&
-                                    (~forward_A_from_ex_mem);
+                                    (forward_B_from_ex_mem == 1'b0);
 
     always @(forward_A_from_ex_mem or forward_A_from_mem_wb) begin
         forward_A = 2'b00;
-        if (forward_A_from_ex_mem == 1'b1)
+        if (forward_A_from_ex_mem == 1'b1) begin
             forward_A = 2'b01;
-        if (forward_A_from_mem_wb == 1'b1)
-            forward_A = 2'b10;    
+            $display("@%t: FORWARD: forwarding A from ex_mem", $time);
+        end
+
+        if (forward_A_from_mem_wb == 1'b1) begin
+            forward_A = 2'b10;
+            $display("@%t: FORWARD: forwarding A from mem_wb", $time);
+        end
     end
 
     always @(forward_B_from_ex_mem or forward_B_from_mem_wb) begin
         forward_B = 2'b00;
-        if (forward_B_from_ex_mem == 1'b1)
+        if (forward_B_from_ex_mem == 1'b1) begin
             forward_B = 2'b01;
-        if (forward_B_from_mem_wb == 1'b1)
-            forward_B = 2'b10;    
+            $display("@%t: FORWARD: forwarding B from ex_mem", $time);
+        end
+
+        if (forward_B_from_mem_wb == 1'b1) begin
+            forward_B = 2'b10;
+            $display("@%t: FORWARD: forwarding B from mem_wb", $time);
+        end
     end
 
 endmodule
