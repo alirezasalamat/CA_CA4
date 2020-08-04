@@ -42,7 +42,7 @@ module alu(a, b, y, zero, alu_ctrl);
                     y = a < b? `WORD_ONE: `WORD_ZERO;
                 $display("@%t: ALU::SLT: a = %d, b = %d", $time, a, b);
             end
-            `ALU_OFF: y = `Z;
+            `ALU_OFF: y = `WORD_ZERO;
 
             default: y = `Z;
         endcase

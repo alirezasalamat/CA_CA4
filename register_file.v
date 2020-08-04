@@ -6,7 +6,7 @@ module register_file(read_reg1, read_reg2, write_reg, write_data,
 
     input [4:0] read_reg1, read_reg2, write_reg;
     input [31:0] write_data;
-    output reg [31:0] read_data1 , read_data2;
+    output [31:0] read_data1 , read_data2;
     input reg_write;
     input clk;
 
@@ -17,16 +17,17 @@ module register_file(read_reg1, read_reg2, write_reg, write_data,
 		$readmemb("registers.bin", registers);
 	end
 
-    always @(read_reg1 or read_reg2) begin
-        read_data1 = registers[read_reg1];
-        read_data2 = registers[read_reg2];
+    assign read_data1 = registers[read_reg1];
+    assign read_data2 = registers[read_reg2];
+
+    always @(read_data1 or read_data2 or read_reg1 or read_reg2) begin
         $display("@%t: REG_FILE::READ: registers %d = %d, %d = %d are read", $time, read_reg1, read_data1,
                 read_reg2, read_data2);
     end
 
     always @(negedge clk) begin
         if (reg_write == 1'b1) begin
-            registers[write_reg] = write_data;
+            registers[write_reg] <= write_data;
             $display("@%t: REG_FILE::WRITE: value %d stored in register %d", $time, write_data, write_reg);
         end
     end

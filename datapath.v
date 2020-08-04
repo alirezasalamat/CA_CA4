@@ -180,8 +180,8 @@ module datapath(clk, rst,
         // $display("@%t: MUX_MEM_TO_REG: out = %d", $time, mux_mem_to_reg_out);
 
     always @(IF_ID_instruction_out) begin
-        opcode = instruction[31:26];
-        func = instruction[5:0];
+        opcode = IF_ID_instruction_out[31:26];
+        func = IF_ID_instruction_out[5:0];
     end
 
     assign dp_IF_ID_rs = IF_ID_rs;
@@ -190,6 +190,7 @@ module datapath(clk, rst,
     assign dp_ID_EX_rs = ID_EX_rs_out;
     assign dp_EX_MEM_rd = EX_MEM_mux_reg_dst_out;
     assign dp_MEM_WB_rd = MEM_WB_mux_reg_dst_out;
+    assign dp_ID_EX_mem_read = ID_EX_mem_read_out;
     assign dp_EX_MEM_reg_write = EX_MEM_reg_write_out;
     assign dp_MEM_WB_reg_write = MEM_WB_reg_write_out;
 
