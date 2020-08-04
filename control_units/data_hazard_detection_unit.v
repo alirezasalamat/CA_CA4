@@ -26,6 +26,7 @@ module data_hazard_detection_unit(ID_EX_rt, ID_EX_mem_read, equal,
     end
 
     always @(branch or equal) begin
+        flush = 1'b0;
         if(branch == 2'b01 && equal == 1'b1) begin
             flush = 1'b1;
         end

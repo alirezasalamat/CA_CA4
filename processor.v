@@ -56,8 +56,8 @@ module processor_test();
 
     initial begin
         $readmemb("./registers.bin", mips.dp.reg_file.registers);
-        $readmemb("./test_2_data_mem.bin", mips.dp.data_memory.mem);
-        $readmemb("./init_tests/test_2.bin", mips.dp.inst_mem.mem);
+        $readmemb("./test_1_data_mem.bin", mips.dp.data_memory.mem);
+        $readmemb("./init_tests/test_1.bin", mips.dp.inst_mem.mem);
     end
     initial begin
         #100
@@ -68,10 +68,8 @@ module processor_test();
     initial begin
         rst = 1'b1;
         #50 rst = 1'b0;
-        #50000 $stop;
-        // #56600 $stop; // it is for testbench no.2
-
-        // #24300 $stop; // it is for testbench no.1
+        // #23750 $stop; // testbench no.2
+        #10650 $stop; // testbench no.1
         
     end
 endmodule

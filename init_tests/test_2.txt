@@ -7,13 +7,11 @@
     addi R3, R0, 80
     lw R10, 1000(R1)
     add R0, R0, R0
-    add R0, R0, R0
 FOR: beq R3, R1, END_FOR
     addi R1, R1, 4
     addi R2, R2, 1
     lw R11, 1000(R1)
     slt R20, R10, R11
-    add R0, R0, R0
     add R0, R0, R0
     add R0, R0, R0
     bne R20, R0, If
@@ -23,3 +21,7 @@ If: add R10, R0, R11
     j FOR
 END_FOR: sw R10, 2000(R0)
     sw R5, 2004(R0)
+    add R0, R0, R0
+    add R0, R0, R0
+    add R0, R0, R0
+    add R0, R0, R0
