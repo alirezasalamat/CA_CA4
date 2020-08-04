@@ -34,7 +34,7 @@ module EX_MEM_Reg(clk, rst,
     input reg_write_in;
     output reg reg_write_out;
 
-    always @(posedge clk) begin
+    always @(posedge clk or posedge rst) begin
         if (rst == 1'b1) begin
             mem_write_out <= 1'b0;
             mem_read_out <= 1'b0;

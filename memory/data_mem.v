@@ -12,11 +12,6 @@ module data_mem(address, write_data, read_data,
 	
 	reg [7:0] mem[0:2 ** 16 - 1];
 
-	initial begin
-		$readmemb("test_1_data_mem.bin", mem); // it is for testbench no.1
-		// $readmemb("test_2_data_mem.bin", mem); // it is for testbench no.2
-	end
-	
 	always @(posedge clk) begin
 		if (mem_write == 1'b1) begin
 			{mem[address[15:0]], mem[address[15:0] + 1], 
@@ -25,7 +20,8 @@ module data_mem(address, write_data, read_data,
 		end
 	end
 
-	assign read_data = (mem_read == 1'b1) ? mem[address[15:0]] : `Z;
+	assign read_data = (mem_read == 1'b1) ? {mem[address[15:0]], mem[address[15:0] + 1], 
+						mem[address[15:0] + 2], mem[address[15:0] + 3]} : `Z;
 	
 	// always @(mem_read or address) begin
 	// 	if (mem_read == 1'b1) begin
@@ -49,6 +45,10 @@ module data_mem_test();
 	wire [31:0] read_data;
 	reg mem_read, mem_write, clk;
 	data_mem data_mem_test(address, write_data, read_data, mem_read, mem_write, clk);
+
+	initial begin
+		$readmemb("./test_1_data_mem.bin", data_mem_test.mem);
+	end
 
 	initial begin
 		clk = 1'b1;
@@ -83,6 +83,10 @@ module data_mem_test_2();
 	wire [31:0] read_data;
 	reg mem_read, mem_write, clk;
 	data_mem data_mem_test_2(address, write_data, read_data, mem_read, mem_write, clk);
+
+	initial begin
+		$readmemb("./test_1_data_mem.bin", data_mem_test_2.mem);
+	end
 
 	initial begin
 		clk = 1'b1;

@@ -55,6 +55,11 @@ module processor_test();
     processor mips(clk, rst);
 
     initial begin
+        $readmemb("./registers.bin", mips.dp.reg_file.registers);
+        $readmemb("./test_1_data_mem.bin", mips.dp.data_memory.mem);
+        $readmemb("./init_tests/init_test_2.bin", mips.dp.inst_mem.mem);
+    end
+    initial begin
         #100
         clk = 1'b1;
         repeat(2000) #50 clk = ~clk;

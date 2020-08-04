@@ -13,9 +13,9 @@ module register_file(read_reg1, read_reg2, write_reg, write_data,
     reg [31:0] registers [31:0];
 
     // reading registers from file
-    initial begin
-		$readmemb("registers.bin", registers);
-	end
+    // initial begin
+	// 	$readmemb("./registers.bin", registers);
+	// end
 
     assign read_data1 = registers[read_reg1];
     assign read_data2 = registers[read_reg2];
@@ -43,6 +43,10 @@ module reg_file_test();
     register_file reg_file_test(read_reg1, read_reg2, write_reg, write_data,
                         reg_write, read_data1, read_data2 , clk);
     
+    initial begin
+        $readmemb("./registers.bin", reg_file_test.registers);
+    end
+
     initial begin
         clk = 1'b1;
         repeat(200) #50 clk = ~clk;
