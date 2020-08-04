@@ -23,16 +23,6 @@ module data_mem(address, write_data, read_data,
 	assign read_data = (mem_read == 1'b1) ? {mem[address[15:0]], mem[address[15:0] + 1], 
 						mem[address[15:0] + 2], mem[address[15:0] + 3]} : `Z;
 	
-	// always @(mem_read or address) begin
-	// 	if (mem_read == 1'b1) begin
-	// 		read_data = {mem[address[15:0]], mem[address[15:0] + 1], 
-	// 				mem[address[15:0] + 2], mem[address[15:0] + 3]};
-	// 		$display("@%t: DATA_MEM::READ: value %d at address %d is read", $time, {mem[address[15:0]], mem[address[15:0] + 1], 
-	// 				mem[address[15:0] + 2], mem[address[15:0] + 3]}, address[15:0]);
-	// 	end
-	// 	else
-	// 		read_data = `Z;
-	// end
 
 	always @(mem_read or address or read_data) begin
 		$display("@%t: DATA_MEM::READ: value %d at address %d is read", $time, {mem[address[15:0]], mem[address[15:0] + 1], 

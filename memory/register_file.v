@@ -12,11 +12,6 @@ module register_file(read_reg1, read_reg2, write_reg, write_data,
 
     reg [31:0] registers [31:0];
 
-    // reading registers from file
-    // initial begin
-	// 	$readmemb("./registers.bin", registers);
-	// end
-
     assign read_data1 = registers[read_reg1];
     assign read_data2 = registers[read_reg2];
 

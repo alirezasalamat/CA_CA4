@@ -13,6 +13,10 @@ module instruction_mem(address, instruction);
     end
 endmodule
 
+
+
+
+
 module inst_mem_test();
     reg [31:0] address;
     wire [31:0] instruction;
